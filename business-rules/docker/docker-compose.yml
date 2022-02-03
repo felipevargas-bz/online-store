@@ -1,8 +1,8 @@
 version: "3.2"
 
 services:
-  store-handler:
-    image: store-handler
+  store-BusinesRules:
+    image: store-BusinesRules
     build:
       context: ..
       dockerfile: docker/Dockerfile

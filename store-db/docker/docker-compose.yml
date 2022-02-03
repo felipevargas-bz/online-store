@@ -1,0 +1,36 @@
+version: "3.2"
+
+services:
+  store-DB-service:
+    image: store-DB-service
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: python3 app/main.py
+    volumes:
+      - ../:/usr/src/app/
+    ports:
+      - 5000:5000
+    environment:
+      - DB_URI=postgres://postgres:postgres@store-db:5432/store
+    networks:
+      - store-network
+
+
+  store-db:
+    image: store-DB
+    build:
+      context: ../db
+      dockerfile: docker/Dockerfile
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=store
+    ports:
+      - 5432:5432
+    networks:
+      - store-network
+
+networks:
+  store-network:
+    external: true
