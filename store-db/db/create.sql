@@ -1,1 +1,0 @@
-CREATE DATABASE coin_dev;
